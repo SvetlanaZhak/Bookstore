@@ -30,8 +30,8 @@ public class Category {
 		return categoryid;
 	}
 	
-	public void setCategoryid(Long Categoryid) {
-		this.categoryid = Categoryid;
+	public void setCategoryid(Long categoryid) {
+		this.categoryid = categoryid;
 	}
 	
 	public String getName() {
@@ -52,6 +52,6 @@ public class Category {
 
 	@Override
 	public String toString() {
-		return "Category [Categoryid=" + categoryid + ", name=" + name + "]";
+		return "Category [categoryid=" + categoryid + ", name=" + name + "]";
 	}
 }
