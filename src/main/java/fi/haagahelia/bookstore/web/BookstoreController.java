@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -25,6 +26,12 @@ public class BookstoreController {
 	@Autowired
 	private CategoryRepository drepository;
 	
+	// Show all students
+    @RequestMapping(value="/login")
+    public String login() {	
+        return "login";
+    }	
+	
 	// Show all books
 	
 	@RequestMapping(value="/booklist") 
@@ -35,13 +42,13 @@ public class BookstoreController {
 }
 	
 
-	// RESTful service to get all students
+	// RESTful service to get all books
     @RequestMapping(value="/books", method = RequestMethod.GET)
     public @ResponseBody List<Book> studentListRest() {	
         return (List<Book>) repository.findAll();
     }    
 
-	// RESTful service to get student by id
+	// RESTful service to get book by id
     @RequestMapping(value="/book/{id}", method = RequestMethod.GET)
     public @ResponseBody Optional<Book> findStudentRest(@PathVariable("id") Long bookId) {	
     	return repository.findById(bookId);
@@ -56,7 +63,7 @@ public class BookstoreController {
 }
 	
 	//Add new book
-
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping(value = "/add")
 	public String addBook(Model model){
 		model.addAttribute("book", new Book());
@@ -79,6 +86,17 @@ public class BookstoreController {
 	model.addAttribute("book", repository.findById(id));
 	return "editbook";
 	}
+	@RequestMapping(value={"/", "/home"})
+	public String homeSecure() {
+		return "home";
+	}  
+    
+    @RequestMapping(value="/hello")
+	public String helloSecure() {
+		return "hello";
+	}
+    
+   
 }
 
 	
