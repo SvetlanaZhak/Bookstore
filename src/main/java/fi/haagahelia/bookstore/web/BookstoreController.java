@@ -55,7 +55,7 @@ public class BookstoreController {
     } 
 	
 	//Delete book
-	
+    @PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping(value = "/delete/{id}", method = RequestMethod.GET)
 	public String deleteBook(@PathVariable("id") Long bookId, Model model){
 	repository.deleteById(bookId);
@@ -72,7 +72,7 @@ public class BookstoreController {
 }
 	
 	//Save new book 
-	
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping(value = "/save", method = RequestMethod.POST)
 	public String saveBook (Book Book) {
 	repository.save(Book);
@@ -80,7 +80,7 @@ public class BookstoreController {
 	}
 	
 	// Edit new book
-	
+	@PreAuthorize("hasAuthority('ADMIN')")
 	@RequestMapping(value = "/edit/{id}")
 	public String editBook(@PathVariable("id") Long id, Model model){
 	model.addAttribute("book", repository.findById(id));

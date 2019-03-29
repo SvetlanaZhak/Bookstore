@@ -32,7 +32,7 @@ public class BookstoreApplication {
 			
 			repository.save(new Book("Ernest Hemingway", "A Farewell to Arms", "1232332-21", "1929", drepository.findByName("Novel").get(0)));
 			repository.save(new Book("George Orwell ", "Animal Farm", "2212343-5", "1945",  drepository.findByName("Fiction").get(0)));
-
+			//Create users: admin/admin user/user
 			User user1 = new User("user", "$2a$04$/ZML5RfOVaT0P.GXNn/6VuTTybEW/KQnsXwv.2ULZemNZeUaJEXA.", "USER");
 			User user2 = new User("admin", "$2a$04$TnFjxzzPOwQ0FpmeleiS1e88sL9cU7975QW8AeN2Yr9.AiIJBS2eW", "ADMIN");
 			urepository.save(user1);
