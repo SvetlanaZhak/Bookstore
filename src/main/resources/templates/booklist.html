@@ -13,7 +13,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 		<h1>Bookstore</h1>
 	</div>
 	<div class="col-md-4">
-		<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]</h3>
+		<h3 th:inline="text">Welcome [[${#httpServletRequest.remoteUser}]]!</h3>
 	</div>
 	<div class="col-md-4" style="padding:20px 0">
 		<form th:action="@{/logout}" method="post">
@@ -33,7 +33,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 		          
 		</tr>  
 <tbody>
-<tr th:each = "book: ${booklist}">
+<tr th:each = "book: ${books}">
 <td th:text="${book.author}"></td>
 	<td th:text="${book.title}"></td>
 	
@@ -48,7 +48,7 @@ xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity5">
 </tbody>
 </table>
 
-<a class="btn btn-sm btn-success" th:href="@{/add}">Add Book</a>
+ <a sec:authorize="hasAuthority('ADMIN')" class="btn btn-success" href="/addbook">Add Book</a>
 </div>
 </body>
 </html>
